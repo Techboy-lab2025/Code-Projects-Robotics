@@ -14,3 +14,17 @@ async def send_velocity(command: VelocityCommand):
     # Replace with actual robot control logic
     requests.post("http://localhost:5000/cmd_vel", json=command.dict())
     return {"message": "Velocity command sent", "command": command.dict()}
+
+## Example Output
+
+When running the script, you'll see:
+
+## Customization
+
+- Change the filename from `fleet_status_log.csv` to something else in the script.
+- Add more fields (e.g., GPS, CPU usage) to the data dictionary for logging.
+- Schedule it to run at fixed intervals with `cron` or the `schedule` module.
+
+## License
+
+This project is licensed under the MIT License.
