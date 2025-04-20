@@ -1,15 +1,16 @@
-# Byte-compiled / optimized / DLL files
-__pycache__/
-*.py[cod]
-*.so
-*.ipynb_checkpoints
+# robot_control_api.py
+from fastapi import FastAPI
+from pydantic import BaseModel
+import requests
 
-# ROS build files
-build/
-devel/
-log/
+app = FastAPI()
 
-# Data and other artifacts
-*.bag
-*.csv
-*.log
+class VelocityCommand(BaseModel):
+    linear_x: float
+    angular_z: float
+
+@app.post("/cmd_vel")
+async def send_velocity(command: VelocityCommand):
+    # Replace with actual robot control logic
+    requests.post("http://localhost:5000/cmd_vel", json=command.dict())
+    return {"message": "Velocity command sent", "command": command.dict()}
